@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.full-screen-modal .mat-dialog-container{
+    padding: 0 !important;
+}
+
+.container-fluid{
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+tr.mat-footer-row,
+tr.mat-row ,
+th.mat-row,
+th.mat-footer-row
+{
+  border: 1px solid #e7e7e7;
+  height: 40px !important;
+}
+
+tr.mat-header-row {
+    border: 1px solid #e7e7e7 !important;
+    height: 40px !important;
+}
+.mat-paginator-container{
+    justify-content: flex-start !important;
+    padding: 0 !important;
+}
+
+.mat-tab-label{
+    height: 30px !important;
+    background: #2b91d9 !important;
+    color: white !important;
+    font-size: 12px !important;
+    min-width: 120px !important;
+    padding: 0 !important;
+}

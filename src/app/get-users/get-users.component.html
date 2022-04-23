@@ -1,0 +1,134 @@
+
+<div class="container-fluid">
+
+      <div class="row">
+        <div style="background-color: #2b91d9;height: 26px !important;">
+
+          <label style="font-size: 15px;color: white;">Alerts</label>
+          <mat-icon (click)="closeDialog()" style="float: right;cursor: pointer;color: white;" aria-hidden="false" aria-label="Example home icon">highlight_off</mat-icon>
+        </div>
+      </div>
+      
+      <mat-tab-group mat-align-tabs="end" >
+        <mat-tab active label="Immunization Alerts">
+
+
+
+          <div id="mediaWrap" class="row">
+
+        
+            <div style="margin-left: 5px;border-right: 1px solid black;" class="col-xs-12 col-sm-8 col-md-7 col-lg-6">
+            <h2 mat-dialog-title style="color: #2b91d9;">Immunization Alerts</h2>
+          
+          
+          
+            <label>Find</label>
+            <input [(ngModel)]='searchText' matInput (ngModelChange)="search()">
+            <button mat-raised-button (click)="deleteUser()"style="float: right; line-height: 24px; background-color: ghostwhite;">Delete</button>
+          
+          
+          
+            
+              <table style=" margin-top: 5px;" mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+  
+                
+                <ng-container matColumnDef="select">
+                  <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox 
+                                  (change)="$event ? masterToggle() : null"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                  (change)="$event ? selection.toggle(row) : null"
+                                  [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
+                  </td>
+                </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <th (click)="sortByName()" mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                  <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                </ng-container>
+              
+                <!-- Desccrition Column -->
+                <ng-container matColumnDef="description">
+                  <th (click)="sortByDesc()" mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+                  <td mat-cell *matCellDef="let row"> {{row.description}} </td>
+                </ng-container>
+              
+                <!-- Web Reference Column -->
+                <ng-container matColumnDef="webReference">
+                  <th (click)="sortBywebRef()" mat-header-cell *matHeaderCellDef mat-sort-header> Web Reference </th>
+                  <td mat-cell *matCellDef="let row"> {{row.webReference}} </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                (click)="selection.toggle(row)"></tr>
+              </table> 
+  
+             
+            </div>
+          
+  
+          
+            <div style="margin-top: 5px;" class="col-xs-12 col-md-5 col-lg-6 col-sm-4" >
+              
+                <label style="margin-right: 50px;" >Name</label>
+                <input required placeholder="Name is required" matInput [(ngModel)]='name' ><br>
+                <label style="margin-right: 16px;" >Description</label>
+                <input required placeholder="Description is required"  matInput [(ngModel)]='description' ><br>
+                <label style="margin-right: 35px;" >Web Ref</label>
+                <input required placeholder="Web Reference is required" [(ngModel)]='webRef' matInput ><br>
+                <button mat-raised-button (click)="addUser()" style="float: right; line-height: 24px; background-color: ghostwhite;">Add</button>
+              
+            </div>
+          
+          
+  
+        
+        </div>
+  
+        <div class="row">
+  
+          <div class="col-xs-12 col-md-7 col-lg-6 col-sm-8">
+            <mat-paginator [length]=dataSource.length
+            [pageSize]="10"
+            [pageSizeOptions]="[10, 20, 50]"
+            aria-label="Select page">
+            </mat-paginator>
+          </div>
+          
+          <div class="col-xs-12 col-md-5 col-lg-6 col-sm-4" style="margin-top: 10px; float: right;" >
+            <button (click)="closeDialog()" mat-raised-button style="float: right; line-height: 24px; background-color: ghostwhite;">Cancel</button>
+  
+            <button (click)="closeDialog()" mat-raised-button style="float: right; line-height: 24px; background-color: #cee5f2;">Ok</button>
+          </div>
+  
+         
+  
+  
+        </div>
+
+        </mat-tab>
+        <mat-tab label="Lab Alerts">Lab Alerts</mat-tab>
+        <mat-tab label="DI Alerts">DI Alerts</mat-tab>
+        <mat-tab label="Procedure Alerts">Procedure Alerts</mat-tab>
+        <mat-tab label="RX Specific Alerts">RX Specific Alerts</mat-tab>
+        <mat-tab label="DX Specific Alerts">DX Specific Alerts</mat-tab>
+        <mat-tab label="Patient Specific Alerts">Patient Specific Alerts</mat-tab>
+
+      </mat-tab-group>
+
+    
+     
+
+  
+
+      
+
+</div>
