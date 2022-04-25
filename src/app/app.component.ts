@@ -18,6 +18,8 @@ export class AppComponent implements OnInit {
       
   }
 
+  // Open the Dialog from this method 
+
   openDialog() {
     let dialogRef=this.dialog.open(GetUsersComponent,{
       maxWidth: '100vw',

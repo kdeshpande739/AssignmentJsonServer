@@ -3,6 +3,8 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Global modal styles for configuration of modal */
 .full-screen-modal .mat-dialog-container{
     padding: 0 !important;
 }
@@ -12,6 +14,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     overflow: hidden;
 }
 
+/* Table configuration styles */
 tr.mat-footer-row,
 tr.mat-row ,
 th.mat-row,
@@ -30,6 +33,7 @@ tr.mat-header-row {
     padding: 0 !important;
 }
 
+/* Tabs styling declared globally */
 .mat-tab-label{
     height: 30px !important;
     background: #2b91d9 !important;

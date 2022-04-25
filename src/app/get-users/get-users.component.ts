@@ -12,6 +12,8 @@ import {MatPaginator} from '@angular/material/paginator';
   styleUrls: ['./get-users.component.css']
 })
 export class GetUsersComponent implements OnInit,AfterViewInit {
+
+  // Declaration of variables
   selectionAmount: number;
   name: any;
   description: any;
@@ -34,12 +36,12 @@ export class GetUsersComponent implements OnInit,AfterViewInit {
   constructor(private http: HttpClient, private dialogRef: MatDialogRef<GetUsersComponent>) { }
 
   ngOnInit() {
-
+  // Get user will be called on page load as it is written in ngOnInit hook
    this.getUsers();
-
   }
 
   ngAfterViewInit(): void {
+    // If any change in the view is called this hook will get called and changes the table rows accordingly
     this.getUsers();
   }
   displayedColumns: string[] = ['select','name', 'description', 'webReference'];
@@ -49,6 +51,7 @@ export class GetUsersComponent implements OnInit,AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
 
+  // Get Api will be executed and data from the same will be bind to the table
   getUsers(){
     this.http.get('http://localhost:3000/data').subscribe((data:any) => {
 
@@ -58,6 +61,8 @@ export class GetUsersComponent implements OnInit,AfterViewInit {
     })
   }
 
+  // Post API will be executed and data from the input boxes will be added to the json file
+  // If any input field is empty it will give an error that this field is empty
   addUser(){
     
     console.log("id:"+this.count+":: Name: "+this.name+":: Description: "+this.description+":: WEB Ref: "+this.webRef)
@@ -82,6 +87,7 @@ export class GetUsersComponent implements OnInit,AfterViewInit {
       alert("Web Reference is required, Please fill the Web Reference field")
   }
 
+  // Select user will be deleted based the id which was selected in the checkbox, Only one user can be delete at a single time as json server does not provide functionality of multiple deletion at a single time
   deleteUser(){
     console.log("Delete::"+this.selection.selected.length);
 
@@ -97,6 +103,7 @@ export class GetUsersComponent implements OnInit,AfterViewInit {
     })
   }
 
+  // Close dialog method is used to close the modal
   closeDialog() { this.dialogRef.close({ event: 'close' }); }
 
 
@@ -108,6 +115,7 @@ export class GetUsersComponent implements OnInit,AfterViewInit {
     return numSelected;
   }
 
+  // Function to select specific rows based on the index value
   selectRows() {
     for (let index = 0; index < this.dataSource.paginator.pageSize; index++) {
       this.selection.select(this.dataSource.data[index]);
@@ -116,6 +124,7 @@ export class GetUsersComponent implements OnInit,AfterViewInit {
     }
   }
 
+  // Search functioanlity is used to search rows based on the name column and the table will show only matching rows based on the filter
   search(){
     console.log(this.searchText)
 
@@ -131,6 +140,7 @@ export class GetUsersComponent implements OnInit,AfterViewInit {
     }
   }
 
+  // Sort by Name funtionality will be used to sort rows by name column
   sortByName(){
     if(this.nameSort){
       this.http.get(`http://localhost:3000/data?_sort=name&_order=desc`).subscribe((data:any) => {
@@ -147,6 +157,7 @@ export class GetUsersComponent implements OnInit,AfterViewInit {
     }
   }
 
+  // Sort by Description funtionality will be used to sort rows by description column
   sortByDesc(){
     if(this.DescSort){
       this.http.get(`http://localhost:3000/data?_sort=description&_order=desc`).subscribe((data:any) => {
@@ -163,6 +174,7 @@ export class GetUsersComponent implements OnInit,AfterViewInit {
     }
   }
 
+    // Sort by Name funtionality will be used to sort rows by name column
   sortBywebRef(){
 
     if(this.webRefSort){
@@ -180,6 +192,8 @@ export class GetUsersComponent implements OnInit,AfterViewInit {
     }
 
   }
+
+  // Select all rows function
   masterToggle() {
     this.isAllSelected() ?
         this.selection.clear() :
